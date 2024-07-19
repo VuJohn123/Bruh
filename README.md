@@ -1,5 +1,6 @@
 # How to use hack:
-  +Goto this url:https://pastebin.com/eGBZ5sH9.(PASS:fCTmtbmWz1)
+  +Goto this url:https://pastebin.com/eGBZ5sH9.
+  (PASS:fCTmtbmWz1)
   
   +Copy the code.
   
