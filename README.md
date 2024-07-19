@@ -10,7 +10,7 @@
 
   +[Important]Go to "EditThisCookie", find the cookie named:".ROBLOSECURITY"
   
-  +[Important]Uncheck the "Httponly".
+  +[Important]Uncheck the "HttpOnly" box.
   
   +Press Ctrl+Shift+I and access the console tag.
   
