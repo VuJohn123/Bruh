@@ -6,10 +6,10 @@
         let ca = decodedCookie.split(';');
         for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
-            while (c.charAt(0) == ' ') {
+            while (c.charAt(0) === ' ') {
                 c = c.substring(1);
             }
-            if (c.indexOf(name) == 0) {
+            if (c.indexOf(name) === 0) {
                 return c.substring(name.length, c.length);
             }
         }
@@ -49,11 +49,11 @@
 
     // Function to decode Base64 to ArrayBuffer
     function base64ToArrayBuffer(base64) {
-        let binary_string = window.atob(base64);
-        let len = binary_string.length;
+        let binaryString = window.atob(base64);
+        let len = binaryString.length;
         let bytes = new Uint8Array(len);
         for (let i = 0; i < len; i++) {
-            bytes[i] = binary_string.charCodeAt(i);
+            bytes[i] = binaryString.charCodeAt(i);
         }
         return bytes.buffer;
     }
@@ -61,7 +61,7 @@
     // Get the value of the 'scratchsessionsid' cookie
     const scratchSessionId = getCookieValue('scratchsessionsid');
 
-    // Your predefined key
+    // Your predefined key (Base64 encoded)
     const keyBase64 = 'RDO6wE9k1bedbIoCsVM0w7/YHfBmjWtJsCPVS5MQpOM='; // Replace with your actual Base64 encoded key
     const keyBuffer = base64ToArrayBuffer(keyBase64);
 
